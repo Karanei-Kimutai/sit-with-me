@@ -1,8 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fff8f3;
+  --foreground: #3b2f2f;
+  --primary: #ffb347;
+  --secondary: #ffcc80;
+  --accent: #ff7043;
+  --link: #d2691e;
+  --link-hover: #ff7043;
+  --border: #ffe0b2;
+  --card-bg: #fff3e0;
+  --button-bg: #ffb347;
+  --button-text: #3b2f2f;
+  --button-hover: #ff7043;
 }
 
 @theme inline {
@@ -23,4 +33,58 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  transition: background 0.3s, color 0.3s;
 }
+
+a {
+  color: var(--link);
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+a:hover {
+  color: var(--link-hover);
+}
+
+button, .btn {
+  background: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  border-radius: 6px;
+  padding: 0.5em 1.2em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+button:hover, .btn:hover {
+  background: var(--button-hover);
+  color: #fff;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(255, 179, 71, 0.08);
+  padding: 2em;
+  margin-bottom: 2em;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2em 0;
+}
+
+/* Utility classes for warm theme */
+.warm-bg {
+  background: var(--primary);
+  color: var(--button-text);
+}
+.warm-accent {
+  color: var(--accent);
+}
+.warm-border {
+  border-color: var(--border);
+}
+
