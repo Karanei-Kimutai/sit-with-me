@@ -18,10 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {/* 2. Place it here. It will stay fixed above all page content. */}
         <Navbar />
-        
-        {/* 'children' represents the specific page you are visiting (e.g., Home, About) */}
         {children}
       </body>
     </html>
