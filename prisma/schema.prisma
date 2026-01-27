@@ -1,14 +1,77 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
-  provider = "prisma-client"
-  output   = "../app/generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// 1. The User Model
+model User {
+  id        String    @id @default(cuid()) // Unique ID (like 'clj...')
+  name      String?
+  email     String    @unique
+  password  String    // We will hash this later
+  image     String?   // URL to profile picture
+  role      Role      @default(MEMBER) // Defaults to regular member
+  
+  posts     Post[]    // A user can write many posts
+  comments  Comment[] // A user can write many comments
+  likes     Like[]    // A user can like many posts
+  
+  createdAt DateTime  @default(now())
+}
+
+// 2. The Blog Post
+model Post {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique // URL-friendly title: "sit-with-me.com/posts/our-first-visit"
+  content     String   // The blog text
+  imageUrl    String?  // Link to the cover image
+  published   Boolean  @default(false)
+  
+  authorId    String
+  author      User     @relation(fields: [authorId], references: [id])
+  
+  comments    Comment[]
+  likes       Like[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// 3. Comments (Only for registered members)
+model Comment {
+  id        String   @id @default(cuid())
+  content   String
+  
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  
+  postId    String
+  post      Post     @relation(fields: [postId], references: [id])
+  
+  createdAt DateTime @default(now())
+}
+
+// 4. Likes
+model Like {
+  id        String   @id @default(cuid())
+  
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  
+  postId    String
+  post      Post     @relation(fields: [postId], references: [id])
+
+  // Prevents a user from liking the same post twice
+  @@unique([userId, postId]) 
+}
+
+// Enums allow us to restrict values to a specific list
+enum Role {
+  ADMIN
+  MEMBER
 }
