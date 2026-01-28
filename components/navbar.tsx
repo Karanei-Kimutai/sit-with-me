@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import { getServerSession } from "next-auth";
+import { authOptions } from "@/authOptions";
 
 export default async function Navbar() {
-  // Check the session
-  const session = await getServerSession();
+  // PASS THE OPTIONS HERE to ensure we get the 'role'
+  const session = await getServerSession(authOptions);
 
   return (
     <nav className="bg-stone-100 border-b border-stone-200 py-4">
@@ -21,9 +22,21 @@ export default async function Navbar() {
           {/* Dynamic Section */}
           {session ? (
             <div className="flex items-center gap-4">
+              
+              {/* ADMIN CHECK: Only show this if the user is an ADMIN */}
+              {(session.user as any).role === 'ADMIN' && (
+                <Link 
+                  href="/admin/create" 
+                  className="text-sm border border-amber-700 text-amber-700 px-3 py-1 rounded hover:bg-amber-50 transition"
+                >
+                  + Write
+                </Link>
+              )}
+
               <span className="text-sm text-stone-500">
                 Hi, {session.user?.name}
               </span>
+              
               <Link 
                 href="/api/auth/signout" 
                 className="text-sm bg-stone-200 px-3 py-1 rounded hover:bg-stone-300 transition"
