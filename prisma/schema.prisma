@@ -12,8 +12,8 @@ model User {
   id        String    @id @default(cuid()) // Unique ID (like 'clj...')
   name      String?
   email     String    @unique
-  password  String    // We will hash this later
-  image     String?   // URL to profile picture
+  password  String    
+  image     String?   // URL to profile picture(coming soon)
   role      Role      @default(MEMBER) // Defaults to regular member
   
   posts     Post[]    // A user can write many posts
@@ -25,21 +25,21 @@ model User {
 
 // 2. The Blog Post
 model Post {
-  id          String   @id @default(cuid())
-  title       String
-  slug        String   @unique // URL-friendly title: "sit-with-me.com/posts/our-first-visit"
-  content     String   // The blog text
-  imageUrl    String?  // Link to the cover image
-  published   Boolean  @default(false)
+  id        String   @id @default(cuid())
+  title     String
+  subtitle  String?  
+  slug      String   @unique
+  content   String   // We will store HTML string here
+  imageUrl  String?
+  published Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   
-  authorId    String
-  author      User     @relation(fields: [authorId], references: [id])
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  String
   
-  comments    Comment[]
-  likes       Like[]
-
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  likes     Like[]
+  comments  Comment[]
 }
 
 // 3. Comments (Only for registered members)
