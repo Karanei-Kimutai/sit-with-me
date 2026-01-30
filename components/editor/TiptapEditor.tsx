@@ -28,6 +28,7 @@ export default function TiptapEditor({ onChange, initialContent = '' }: Props) {
       }),
     ],
     content: initialContent,
+    immediatelyRender: false,
     editorProps: {
       attributes: {
         // These classes style the actual writing area (Prose)
