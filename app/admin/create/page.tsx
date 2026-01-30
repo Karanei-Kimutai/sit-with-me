@@ -1,84 +1,76 @@
-import { getServerSession } from "next-auth";
-import { redirect } from "next/navigation";
-import { PrismaClient } from "@prisma/client";
-import { createPost } from "@/actions/createPost"; 
-import { authOptions } from "@/authOptions"; // Import shared config
+'use client'
 
-const prisma = new PrismaClient();
+import { createPost } from "@/actions/createPost";
+import TiptapEditor from "@/components/editor/TiptapEditor";
+import { useState } from "react";
+import Link from "next/link";
 
-export default async function CreatePostPage() {
-  // 1. GATEKEEPER: Check session using our specific options
-  const session = await getServerSession(authOptions);
-  
-  if (!session || !session.user?.email) {
-    redirect("/api/auth/signin");
-  }
+export default function CreatePostPage() {
+  const [content, setContent] = useState('')
 
-  // 2. DOUBLE CHECK: Verify role from DB (safest method)
-  const user = await prisma.user.findUnique({
-    where: { email: session.user.email }
-  });
-
-  if (user?.role !== "ADMIN") {
-    return (
-      <main className="max-w-4xl mx-auto px-6 py-20 text-center">
-        <h1 className="text-3xl font-bold text-stone-800">Access Denied</h1>
-        <p className="text-stone-600 mt-2">You do not have permission to view this page.</p>
-      </main>
-    );
-  }
-
-  // 3. Render the Form
   return (
-    <main className="max-w-2xl mx-auto px-6 py-12">
-      <h1 className="text-3xl font-bold text-amber-900 mb-8">Write a New Story</h1>
+    <main className="min-h-screen bg-stone-50 pb-20">
       
-      <form action={createPost} className="space-y-6">
+      {/* FORM START */}
+      <form action={createPost}>
         
-        {/* Title */}
-        <div>
-          <label className="block text-sm font-medium text-stone-700 mb-1">Title</label>
+        {/* A. STICKY PUBLISH BAR */}
+        <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-stone-200 px-6 py-4 flex justify-between items-center mb-8">
+          <div className="flex items-center gap-4">
+            <Link href="/" className="text-stone-400 hover:text-stone-600 transition-colors">
+              ✕ <span className="sr-only">Cancel</span>
+            </Link>
+            <span className="text-sm font-medium text-stone-400">Drafting</span>
+          </div>
+          
+          <button 
+            type="submit" 
+            className="bg-green-700 text-white px-6 py-2 rounded-full text-sm font-medium hover:bg-green-800 transition-all shadow-sm"
+          >
+            Publish
+          </button>
+        </nav>
+
+        {/* B. WRITING AREA */}
+        <div className="max-w-4xl mx-auto px-6">
+          
+          {/* 1. Title Input */}
           <input 
             type="text" 
             name="title" 
             required 
-            placeholder="e.g. A Day in the Life..."
-            className="w-full p-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-amber-500 outline-none"
+            placeholder="Title"
+            className="w-full text-5xl font-extrabold text-stone-900 placeholder:text-stone-300 border-none focus:ring-0 px-0 mb-4 bg-transparent"
+            autoFocus
           />
-        </div>
 
-        {/* Image URL */}
-        <div>
-          <label className="block text-sm font-medium text-stone-700 mb-1">Cover Image URL</label>
+          {/* 2. Subtitle Input (New Substack Feature) */}
           <input 
-            type="url" 
-            name="imageUrl" 
-            placeholder="https://..."
-            className="w-full p-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-amber-500 outline-none"
+            type="text" 
+            name="subtitle" 
+            placeholder="Subtitle (optional)"
+            className="w-full text-2xl text-stone-500 placeholder:text-stone-300 border-none focus:ring-0 px-0 mb-8 bg-transparent font-serif"
           />
-          <p className="text-xs text-stone-500 mt-1">Paste a link to an image (e.g. from Unsplash)</p>
+
+          {/* 3. Cover Image URL (Hidden behind a detail or kept simple) */}
+          <div className="mb-8">
+            <input 
+              type="url" 
+              name="imageUrl" 
+              placeholder="Paste a cover image link (optional)..."
+              className="w-full text-sm font-medium text-stone-500 placeholder:text-stone-400 border-b border-stone-200 focus:border-stone-400 focus:ring-0 bg-transparent px-0 py-2"
+            />
+          </div>
+
+          {/* 4. THE TIPTAP EDITOR */}
+          {/* We use a hidden input to send the HTML to the server action */}
+          <input type="hidden" name="content" value={content} />
+          
+          <TiptapEditor onChange={(newContent) => setContent(newContent)} />
+
         </div>
-
-        {/* Content */}
-        <div>
-          <label className="block text-sm font-medium text-stone-700 mb-1">Story Content</label>
-          <textarea 
-            name="content" 
-            required 
-            rows={10}
-            placeholder="Write your story here..."
-            className="w-full p-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-amber-500 outline-none"
-          ></textarea>
-        </div>
-
-        <button 
-          type="submit" 
-          className="w-full bg-amber-700 text-white py-3 rounded-lg font-medium hover:bg-amber-800 transition-colors"
-        >
-          Publish Story
-        </button>
-
       </form>
+
     </main>
   );
 }
