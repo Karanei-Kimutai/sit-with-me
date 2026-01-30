@@ -97,10 +97,24 @@ export default async function SinglePostPage({ params }: Props) {
       {/* 3. THE STORY CONTENT */}
       <article className="max-w-3xl mx-auto px-6 mt-12">
         <div className="bg-white p-8 md:p-12 rounded-2xl border border-stone-200 shadow-sm">
-          {/* Using whitespace-pre-wrap to respect line breaks from the textarea */}
-          <div className="text-stone-700 text-lg md:text-xl leading-relaxed whitespace-pre-wrap font-serif">
-            {post.content}
-          </div>
+          
+          {/* A. Subtitle (New Feature) */}
+          {post.subtitle && (
+            <h2 className="text-xl md:text-2xl text-stone-500 font-serif italic mb-8 leading-relaxed border-l-4 border-amber-500 pl-4">
+              {post.subtitle}
+            </h2>
+          )}
+
+          {/* B. Rich Text Content (Tiptap HTML) */}
+          {/* We use 'prose' classes to automatically style the HTML (headings, bold, images) */}
+          <div 
+            className="prose prose-stone prose-lg md:prose-xl max-w-none 
+            font-serif text-stone-700 leading-relaxed
+            prose-headings:font-sans prose-headings:font-bold prose-headings:text-stone-900
+            prose-a:text-amber-700 prose-a:no-underline hover:prose-a:underline
+            prose-img:rounded-xl prose-img:shadow-md prose-img:my-8"
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          />
 
           <hr className="my-12 border-stone-100" />
 
