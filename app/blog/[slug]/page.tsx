@@ -1,23 +1,21 @@
 import { PrismaClient } from '@prisma/client';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { getServerSession } from 'next-auth'; // Import Session
-import LikeButton from '@/components/LikeButton'; // Import new button
+import { getServerSession } from 'next-auth';
+import { authOptions } from "@/authOptions";
+import LikeButton from '@/components/LikeButton';
 
 const prisma = new PrismaClient();
 
 async function getPost(slug: string) {
   if (!slug) return null;
-
-  const post = await prisma.post.findUnique({
+  return await prisma.post.findUnique({
     where: { slug: slug },
     include: { 
       author: true,
-      likes: true, // Fetch likes
+      likes: true,
     },
   });
-
-  return post;
 }
 
 type Props = {
@@ -28,25 +26,12 @@ export default async function SinglePostPage({ params }: Props) {
   const { slug } = await params;
   const post = await getPost(slug);
 
-  if (!post) {
-    notFound(); 
-  }
+  if (!post) notFound();
 
-  // 1. Get current user session
-  const session = await getServerSession();
+  const session = await getServerSession(authOptions);
   const userEmail = session?.user?.email;
-
-  // 2. Check if current user has liked this post
-  // We check if the 'likes' array contains a like with this user's email
-  // (We need to fetch the user ID first normally, but let's do a quick filter here)
-  
-  // Note: For perfect accuracy, we should check ID, but for now let's pass the 
-  // 'isGuest' flag and handle the rest.
-  
   const isGuest = !session;
-  
-  // To check "isLikedByMe", we need to know the User ID. 
-  // Let's do a quick DB lookup for the current user if they are logged in.
+
   let isLikedByMe = false;
   if (userEmail) {
     const user = await prisma.user.findUnique({ where: { email: userEmail }});
@@ -56,47 +41,85 @@ export default async function SinglePostPage({ params }: Props) {
   }
 
   return (
-    <article className="max-w-3xl mx-auto px-6 py-12">
-      <div className="mb-8">
-        <Link href="/blog" className="text-amber-700 hover:underline">
-          ← Back to Feed
-        </Link>
-      </div>
+    <main className="min-h-screen bg-stone-50 pb-20">
+      
+      {/* 1. CINEMATIC HEADER SECTION */}
+      <header className="bg-white border-b border-stone-200">
+        <div className="max-w-4xl mx-auto px-6 pt-12 pb-8">
+          <Link href="/blog" className="text-amber-700 hover:text-amber-800 text-sm font-medium transition-colors mb-8 inline-block">
+            ← All Stories
+          </Link>
+          
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-stone-900 leading-tight mb-6">
+            {post.title}
+          </h1>
 
-      <header className="mb-8">
-        <h1 className="text-4xl font-bold text-stone-900 mb-4 leading-tight">
-          {post.title}
-        </h1>
-        <div className="flex items-center justify-between border-b border-stone-200 pb-6">
-            <div className="flex items-center text-stone-500 text-sm">
-                <span>By {post.author.name}</span>
-                <span className="mx-2">•</span>
-                <span>{new Date(post.createdAt).toLocaleDateString()}</span>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center text-amber-800 font-bold">
+                {post.author.name?.charAt(0)}
+              </div>
+              <div>
+                <p className="text-sm font-bold text-stone-800">{post.author.name}</p>
+                <p className="text-xs text-stone-500">{new Date(post.createdAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
+              </div>
             </div>
 
-            {/* HERE IS OUR NEW BUTTON */}
-            <LikeButton 
+            <div className="flex items-center gap-4">
+              <LikeButton 
                 postId={post.id} 
                 initialLikeCount={post.likes.length} 
                 isLikedByMe={isLikedByMe}
                 isGuest={isGuest}
-            />
+              />
+            </div>
+          </div>
         </div>
       </header>
 
-      {post.imageUrl && (
-        <div className="mb-10 rounded-xl overflow-hidden shadow-sm">
-          <img 
-            src={post.imageUrl} 
-            alt={post.title} 
-            className="w-full h-auto object-cover"
-          />
+      {/* 2. HERO IMAGE */}
+      <div className="max-w-5xl mx-auto px-0 md:px-6 -mt-4 md:mt-8">
+        <div className="aspect-video w-full bg-stone-200 md:rounded-2xl overflow-hidden shadow-xl shadow-stone-200/50">
+          {post.imageUrl ? (
+            <img 
+              src={post.imageUrl} 
+              alt={post.title} 
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center text-stone-400">
+              No Image Provided
+            </div>
+          )}
         </div>
-      )}
-
-      <div className="prose prose-stone prose-lg max-w-none text-stone-700">
-        <p>{post.content}</p>
       </div>
-    </article>
+
+      {/* 3. THE STORY CONTENT */}
+      <article className="max-w-3xl mx-auto px-6 mt-12">
+        <div className="bg-white p-8 md:p-12 rounded-2xl border border-stone-200 shadow-sm">
+          {/* Using whitespace-pre-wrap to respect line breaks from the textarea */}
+          <div className="text-stone-700 text-lg md:text-xl leading-relaxed whitespace-pre-wrap font-serif">
+            {post.content}
+          </div>
+
+          <hr className="my-12 border-stone-100" />
+
+          {/* FOOTER CALL TO ACTION */}
+          <div className="bg-amber-50 rounded-xl p-8 text-center border border-amber-100">
+            <h4 className="text-xl font-bold text-amber-900 mb-2">Did this story move you?</h4>
+            <p className="text-amber-800/80 mb-6">Join "Sit With Me" to help us restore dignity to street children through more outreach like this.</p>
+            {!session && (
+              <Link 
+                href="/register" 
+                className="bg-amber-800 text-white px-8 py-3 rounded-full font-medium hover:bg-amber-900 transition-all inline-block"
+              >
+                Join our Community
+              </Link>
+            )}
+          </div>
+        </div>
+      </article>
+
+    </main>
   );
 }
