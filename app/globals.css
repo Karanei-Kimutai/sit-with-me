@@ -39,7 +39,7 @@ body {
 
 a {
   color: var(--link);
-  text-decoration: underline;
+  text-decoration: none;
   transition: color 0.2s;
 }
 a:hover {
