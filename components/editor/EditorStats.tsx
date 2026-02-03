@@ -46,19 +46,19 @@ export default function EditorStats({ editor }: Props) {
   }
 
   return (
-    <div className="bg-stone-50 border-b border-stone-200 px-4 py-2 flex items-center gap-6 text-xs text-stone-600">
-      <div className="flex items-center gap-2">
-        <span className="font-medium">Words:</span>
+    <div className="bg-white/95 border-b border-stone-200 px-4 py-2 flex flex-wrap items-center gap-4 text-xs text-stone-600">
+      <div className="flex items-center gap-2 bg-stone-50 border border-stone-200 rounded-full px-3 py-1">
+        <span className="font-semibold text-stone-500">Words</span>
         <span className="font-mono text-stone-900">{stats.words}</span>
       </div>
       
-      <div className="flex items-center gap-2">
-        <span className="font-medium">Characters:</span>
+      <div className="flex items-center gap-2 bg-stone-50 border border-stone-200 rounded-full px-3 py-1">
+        <span className="font-semibold text-stone-500">Characters</span>
         <span className="font-mono text-stone-900">{stats.characters}</span>
       </div>
       
-      <div className="flex items-center gap-2">
-        <span className="font-medium">Reading time:</span>
+      <div className="flex items-center gap-2 bg-stone-50 border border-stone-200 rounded-full px-3 py-1">
+        <span className="font-semibold text-stone-500">Reading</span>
         <span className="font-mono text-stone-900">
           {stats.readingTime} min{stats.readingTime !== 1 ? 's' : ''}
         </span>

@@ -46,74 +46,47 @@ export default function CreatePostPage() {
         <div className="max-w-6xl mx-auto px-2 sm:px-8 py-8">
           <div className="bg-white rounded-2xl shadow-xl border border-stone-200 overflow-hidden">
           
-            <div className="p-8 md:p-12 border-b border-stone-200 bg-gradient-to-b from-amber-50/30 to-white">
-              
-              <input 
-                type="text" 
-                name="title" 
-                required 
-                placeholder="Your Story Title"
-                className="w-full text-4xl md:text-5xl font-extrabold text-stone-900 placeholder:text-stone-300 border-none focus:ring-0 px-0 mb-4 bg-transparent focus:outline-none"
-                autoFocus
-                style={{ lineHeight: 1.1 }}
-              />
-
-              <input 
-                type="text" 
-                name="subtitle" 
-                placeholder="Add a subtitle to give context (optional)"
-                className="w-full text-xl md:text-2xl text-stone-600 placeholder:text-stone-300 border-none focus:ring-0 px-0 mb-6 bg-transparent font-serif focus:outline-none"
-                style={{ lineHeight: 1.3 }}
-              />
-
-              <div className="flex items-center gap-2 bg-white rounded-lg border border-stone-200 p-3">
-                <svg className="w-5 h-5 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                <input 
-                  type="url" 
-                  name="imageUrl" 
-                  placeholder="Cover image URL (optional)"
-                  className="flex-1 text-sm text-stone-600 placeholder:text-stone-400 border-none focus:ring-0 bg-transparent px-2 focus:outline-none"
-                />
-              </div>
-            </div>
-
             <input type="hidden" name="content" value={content} />
             <TiptapEditor 
               onChange={(newContent) => setContent(newContent)} 
               postId="new-draft"
+              header={
+                <div className="p-8 md:p-12">
+                  <input 
+                    type="text" 
+                    name="title" 
+                    required 
+                    placeholder="Your Story Title"
+                    className="w-full text-4xl md:text-5xl font-extrabold text-stone-900 placeholder:text-stone-300 border-none focus:ring-0 px-0 mb-4 bg-transparent focus:outline-none"
+                    autoFocus
+                    style={{ lineHeight: 1.1 }}
+                  />
+
+                  <input 
+                    type="text" 
+                    name="subtitle" 
+                    placeholder="Add a subtitle to give context (optional)"
+                    className="w-full text-xl md:text-2xl text-stone-600 placeholder:text-stone-300 border-none focus:ring-0 px-0 mb-6 bg-transparent font-serif focus:outline-none"
+                    style={{ lineHeight: 1.3 }}
+                  />
+
+                  <div className="flex items-center gap-2 bg-white rounded-lg border border-stone-200 p-3">
+                    <svg className="w-5 h-5 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    <input 
+                      type="url" 
+                      name="imageUrl" 
+                      placeholder="Cover image URL (optional)"
+                      className="flex-1 text-sm text-stone-600 placeholder:text-stone-400 border-none focus:ring-0 bg-transparent px-2 focus:outline-none"
+                    />
+                  </div>
+                </div>
+              }
             />
 
           </div>
 
-          <div className="mt-6 p-6 bg-amber-50 border border-amber-200 rounded-xl">
-            <h3 className="text-sm font-bold text-amber-900 mb-3 flex items-center gap-2">
-              <span>Writing Tips for Powerful Stories</span>
-            </h3>
-            <ul className="text-sm text-amber-800 space-y-2">
-              <li className="flex items-start gap-2">
-                <span className="text-amber-600 mt-0.5">•</span>
-                <span><strong>Start with a moment:</strong> Begin with a specific interaction or observation that drew you in.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-amber-600 mt-0.5">•</span>
-                <span><strong>Use names:</strong> When appropriate, use first names to humanize the story.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-amber-600 mt-0.5">•</span>
-                <span><strong>Include dialogue:</strong> What they said can be more powerful than what you observed.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-amber-600 mt-0.5">•</span>
-                <span><strong>Show emotion:</strong> Don&apos;t be afraid to share how the encounter affected you.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-amber-600 mt-0.5">•</span>
-                <span><strong>End with impact:</strong> Leave readers with something to think about or act on.</span>
-              </li>
-            </ul>
-          </div>
         </div>
       </form>
 

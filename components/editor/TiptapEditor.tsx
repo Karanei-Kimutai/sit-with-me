@@ -21,6 +21,7 @@ type Props = {
   toolbarOnly?: boolean
   contentOnly?: boolean
   postId?: string // For auto-save identification
+  header?: React.ReactNode
 }
 
 export default function TiptapEditor({ 
@@ -28,7 +29,8 @@ export default function TiptapEditor({
   initialContent = '', 
   toolbarOnly = false, 
   contentOnly = false,
-  postId = 'draft'
+  postId = 'draft',
+  header
 }: Props) {
   const [isFocusMode, setIsFocusMode] = useState(false)
   const [showPreview, setShowPreview] = useState(false)
@@ -68,7 +70,7 @@ export default function TiptapEditor({
     immediatelyRender: false,
     editorProps: {
       attributes: {
-        class: 'prose prose-lg prose-stone max-w-none focus:outline-none min-h-[60vh] text-stone-900 px-8 py-6',
+        class: 'editor-prose focus:outline-none min-h-[60vh] px-10 py-8',
       },
       // Handle paste from clipboard (including images)
       handlePaste: (view, event) => {
@@ -183,7 +185,7 @@ export default function TiptapEditor({
   }
 
   return (
-    <div className={`w-full transition-all duration-300 ${isFocusMode ? 'fixed inset-0 z-50 bg-stone-50' : ''}`}>
+    <div className={`w-full transition-all duration-300 ${isFocusMode ? 'fixed inset-0 z-50 bg-[#f7f2ea]' : ''}`}>
       {/* Auto-save indicator */}
       {lastSaved && (
         <div className="fixed bottom-4 right-4 bg-green-100 border border-green-300 text-green-800 px-4 py-2 rounded-full text-sm flex items-center gap-2 shadow-lg z-50">
@@ -195,7 +197,7 @@ export default function TiptapEditor({
       )}
 
       {/* Editor Container */}
-      <div className={`${isFocusMode ? 'h-screen flex flex-col' : 'border border-stone-200 rounded-lg overflow-hidden bg-white shadow-sm'}`}>
+      <div className={`${isFocusMode ? 'h-screen flex flex-col' : 'border border-stone-200 rounded-2xl overflow-hidden bg-white shadow-[0_20px_60px_-30px_rgba(0,0,0,0.4)]'}`}>
         
         {/* Toolbar */}
         <EnhancedToolbar 
@@ -207,11 +209,18 @@ export default function TiptapEditor({
           onClearDraft={clearDraft}
         />
 
+        {/* Header Area (titles, cover, etc.) */}
+        {header && (
+          <div className="border-b border-stone-200 bg-gradient-to-b from-amber-50/30 to-white">
+            {header}
+          </div>
+        )}
+
         {/* Editor Stats */}
         {!showPreview && <EditorStats editor={editor} />}
 
         {/* Content Area */}
-        <div className={`${isFocusMode ? 'flex-1 overflow-auto' : ''}`}>
+        <div className={`editor-canvas ${isFocusMode ? 'flex-1 overflow-auto' : ''}`}>
           {showPreview ? (
             <div className="p-8 md:p-12 max-w-4xl mx-auto">
               <div className="bg-white rounded-xl border border-stone-200 p-8 md:p-12">
@@ -222,7 +231,7 @@ export default function TiptapEditor({
                 </div>
               </div>
           ) : (
-            <div className={`${isFocusMode ? 'max-w-4xl mx-auto py-8' : 'p-6'}`}>
+            <div className={`${isFocusMode ? 'max-w-4xl mx-auto py-10' : 'p-8 md:p-10'}`}>
               <EditorContent editor={editor} />
             </div>
           )}
@@ -230,6 +239,58 @@ export default function TiptapEditor({
       </div>
 
       <style jsx global>{`
+        .editor-canvas {
+          background:
+            radial-gradient(circle at 20% 10%, rgba(252, 211, 77, 0.08), transparent 35%),
+            radial-gradient(circle at 80% 0%, rgba(120, 113, 108, 0.08), transparent 40%),
+            linear-gradient(180deg, #fbfaf8 0%, #ffffff 35%, #fbfaf8 100%);
+        }
+
+        .editor-prose {
+          max-width: none;
+          color: #1c1917;
+          font-family: "Iowan Old Style", "Palatino", "Georgia", serif;
+          font-size: 1.125rem;
+          line-height: 1.9;
+          letter-spacing: 0.01em;
+        }
+
+        .editor-prose h1,
+        .editor-prose h2,
+        .editor-prose h3,
+        .editor-prose h4 {
+          font-family: "Inter", "Segoe UI", sans-serif;
+          font-weight: 700;
+          color: #0c0a09;
+          letter-spacing: -0.01em;
+        }
+
+        .editor-prose h2 {
+          font-size: 1.75rem;
+          margin-top: 2.25rem;
+          margin-bottom: 0.75rem;
+        }
+
+        .editor-prose h3 {
+          font-size: 1.35rem;
+          margin-top: 1.75rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .editor-prose p {
+          margin: 1rem 0;
+        }
+
+        .editor-prose ul,
+        .editor-prose ol {
+          padding-left: 1.5rem;
+          margin: 1.25rem 0;
+        }
+
+        .editor-prose li {
+          margin: 0.35rem 0;
+        }
+
         .editor-image {
           max-width: 100%;
           height: auto;
