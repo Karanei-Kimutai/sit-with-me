@@ -19,7 +19,9 @@ function ToolbarButton({ onClick, isActive, disabled, title, children }: { onCli
       onClick={onClick}
       disabled={disabled}
       title={title}
-      className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${isActive ? 'bg-amber-800 text-white shadow-sm' : 'text-stone-700 hover:bg-stone-100 disabled:opacity-30 disabled:cursor-not-allowed'}`}
+      aria-label={title}
+      aria-pressed={isActive}
+      className={`h-9 min-w-9 px-2.5 rounded-lg text-sm font-medium transition-all border flex items-center justify-center ${isActive ? 'bg-amber-800 text-white border-amber-800 shadow-sm' : 'text-stone-700 border-transparent hover:bg-white hover:border-stone-200 hover:shadow-sm disabled:opacity-30 disabled:cursor-not-allowed'}`}
     >
       {children}
     </button>
@@ -27,7 +29,15 @@ function ToolbarButton({ onClick, isActive, disabled, title, children }: { onCli
 }
 
 function Divider() {
-  return <div className="w-px h-6 bg-stone-200 mx-1" />
+  return <div className="w-px h-6 bg-stone-200 mx-2" />
+}
+
+function ToolbarGroup({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex items-center gap-1 bg-stone-50/80 border border-stone-200 rounded-xl p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]">
+      {children}
+    </div>
+  )
 }
 
 export default function EnhancedToolbar({ 
@@ -77,16 +87,16 @@ export default function EnhancedToolbar({
   }
 
   return (
-    <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-stone-200">
-      <div className="flex flex-wrap items-center gap-1 p-3">
+    <div className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-stone-200">
+      <div className="flex flex-wrap items-center gap-2 p-3">
         
-        <div className="flex items-center gap-1">
+        <ToolbarGroup>
           <ToolbarButton
             onClick={() => editor.chain().focus().toggleBold().run()}
             isActive={editor.isActive('bold')}
             title="Bold (Ctrl+B)"
           >
-            <span className="font-bold">B</span>
+            <span className="font-bold text-[13px]">B</span>
           </ToolbarButton>
           
           <ToolbarButton
@@ -94,7 +104,7 @@ export default function EnhancedToolbar({
             isActive={editor.isActive('italic')}
             title="Italic (Ctrl+I)"
           >
-            <span className="italic">I</span>
+            <span className="italic text-[13px]">I</span>
           </ToolbarButton>
           
           <ToolbarButton
@@ -102,7 +112,7 @@ export default function EnhancedToolbar({
             isActive={editor.isActive('underline')}
             title="Underline (Ctrl+U)"
           >
-            <span className="underline">U</span>
+            <span className="underline text-[13px]">U</span>
           </ToolbarButton>
           
           <ToolbarButton
@@ -110,13 +120,13 @@ export default function EnhancedToolbar({
             isActive={editor.isActive('strike')}
             title="Strikethrough"
           >
-            <span className="line-through">S</span>
+            <span className="line-through text-[13px]">S</span>
           </ToolbarButton>
-        </div>
+        </ToolbarGroup>
 
         <Divider />
 
-        <div className="flex items-center gap-1">
+        <ToolbarGroup>
           <ToolbarButton
             onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
             isActive={editor.isActive('heading', { level: 2 })}
@@ -132,17 +142,24 @@ export default function EnhancedToolbar({
           >
             H3
           </ToolbarButton>
-        </div>
+        </ToolbarGroup>
 
         <Divider />
 
-        <div className="flex items-center gap-1">
+        <ToolbarGroup>
           <ToolbarButton
             onClick={() => editor.chain().focus().toggleBulletList().run()}
             isActive={editor.isActive('bulletList')}
             title="Bullet List"
           >
-            List
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <line x1="9" y1="6" x2="20" y2="6" />
+              <line x1="9" y1="12" x2="20" y2="12" />
+              <line x1="9" y1="18" x2="20" y2="18" />
+              <circle cx="4.5" cy="6" r="1" />
+              <circle cx="4.5" cy="12" r="1" />
+              <circle cx="4.5" cy="18" r="1" />
+            </svg>
           </ToolbarButton>
           
           <ToolbarButton
@@ -150,7 +167,15 @@ export default function EnhancedToolbar({
             isActive={editor.isActive('orderedList')}
             title="Numbered List"
           >
-            1. List
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <line x1="9" y1="6" x2="20" y2="6" />
+              <line x1="9" y1="12" x2="20" y2="12" />
+              <line x1="9" y1="18" x2="20" y2="18" />
+              <path d="M4 6h1v4" />
+              <path d="M5 10H3" />
+              <path d="M3.5 12.5H5a1 1 0 1 1 0 2H3.5" />
+              <path d="M3.5 16.5H5a1 1 0 1 1 0 2H3.5" />
+            </svg>
           </ToolbarButton>
           
           <ToolbarButton
@@ -158,19 +183,26 @@ export default function EnhancedToolbar({
             isActive={editor.isActive('blockquote')}
             title="Quote/Callout"
           >
-            Quote
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M7 7h6v6H7z" />
+              <path d="M15 11h2a2 2 0 0 1 2 2v4h-6" />
+            </svg>
           </ToolbarButton>
-        </div>
+        </ToolbarGroup>
 
         <Divider />
 
-        <div className="flex items-center gap-1">
+        <ToolbarGroup>
           <ToolbarButton
             onClick={() => editor.chain().focus().setTextAlign('left').run()}
             isActive={editor.isActive({ textAlign: 'left' })}
             title="Align Left"
           >
-            Left
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <line x1="4" y1="6" x2="20" y2="6" />
+              <line x1="4" y1="12" x2="14" y2="12" />
+              <line x1="4" y1="18" x2="18" y2="18" />
+            </svg>
           </ToolbarButton>
           
           <ToolbarButton
@@ -178,7 +210,11 @@ export default function EnhancedToolbar({
             isActive={editor.isActive({ textAlign: 'center' })}
             title="Align Center"
           >
-            Center
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <line x1="6" y1="6" x2="18" y2="6" />
+              <line x1="4" y1="12" x2="20" y2="12" />
+              <line x1="6" y1="18" x2="18" y2="18" />
+            </svg>
           </ToolbarButton>
           
           <ToolbarButton
@@ -186,15 +222,23 @@ export default function EnhancedToolbar({
             isActive={editor.isActive({ textAlign: 'right' })}
             title="Align Right"
           >
-            Right
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <line x1="4" y1="6" x2="20" y2="6" />
+              <line x1="10" y1="12" x2="20" y2="12" />
+              <line x1="6" y1="18" x2="20" y2="18" />
+            </svg>
           </ToolbarButton>
-        </div>
+        </ToolbarGroup>
 
         <Divider />
 
-        <div className="flex items-center gap-1">
-          <label className="px-3 py-1.5 rounded-md text-sm font-medium text-stone-700 hover:bg-stone-100 cursor-pointer transition-all">
-            Photo
+        <ToolbarGroup>
+          <label className="h-9 min-w-9 px-3 rounded-lg text-sm font-medium text-stone-700 hover:bg-white hover:border-stone-200 hover:shadow-sm cursor-pointer transition-all border border-transparent inline-flex items-center justify-center" title="Upload Image">
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="14" rx="2" />
+              <circle cx="8" cy="10" r="1.5" />
+              <path d="M21 16l-5-5-6 6-3-3-4 4" />
+            </svg>
             <input 
               type="file" 
               className="hidden" 
@@ -209,11 +253,14 @@ export default function EnhancedToolbar({
               isActive={editor.isActive('link')}
               title="Add Link"
             >
-              Link
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M10 14a5 5 0 0 0 7 0l2-2a5 5 0 0 0-7-7l-1 1" />
+                <path d="M14 10a5 5 0 0 0-7 0l-2 2a5 5 0 0 0 7 7l1-1" />
+              </svg>
             </ToolbarButton>
             
             {showLinkInput && (
-              <div className="absolute top-full left-0 mt-2 bg-white border border-stone-200 rounded-lg shadow-lg p-3 w-72 z-50">
+              <div className="absolute top-full left-0 mt-2 bg-white border border-stone-200 rounded-xl shadow-xl p-3 w-72 z-50">
                 <input
                   type="url"
                   placeholder="https://example.com"
@@ -225,14 +272,14 @@ export default function EnhancedToolbar({
                       setLink()
                     }
                   }}
-                  className="w-full px-3 py-2 border border-stone-300 rounded-md text-sm mb-2"
+                  className="w-full px-3 py-2 border border-stone-300 rounded-lg text-sm mb-2 focus:ring-2 focus:ring-amber-200 focus:outline-none"
                   autoFocus
                 />
                 <div className="flex gap-2">
                   <button
                     type="button"
                     onClick={setLink}
-                    className="flex-1 bg-amber-700 text-white px-3 py-1.5 rounded-md text-sm hover:bg-amber-800"
+                    className="flex-1 bg-amber-700 text-white px-3 py-1.5 rounded-lg text-sm hover:bg-amber-800"
                   >
                     Add Link
                   </button>
@@ -243,7 +290,7 @@ export default function EnhancedToolbar({
                       setShowLinkInput(false)
                       setLinkUrl('')
                     }}
-                    className="px-3 py-1.5 text-stone-600 hover:bg-stone-100 rounded-md text-sm"
+                    className="px-3 py-1.5 text-stone-600 hover:bg-stone-100 rounded-lg text-sm"
                   >
                     Remove
                   </button>
@@ -251,39 +298,49 @@ export default function EnhancedToolbar({
               </div>
             )}
           </div>
-        </div>
+        </ToolbarGroup>
 
         <Divider />
 
-        <div className="flex items-center gap-1">
+        <ToolbarGroup>
           <ToolbarButton
             onClick={() => editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()}
             title="Insert Table"
           >
-            Table
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="14" rx="1.5" />
+              <line x1="3" y1="10" x2="21" y2="10" />
+              <line x1="8" y1="5" x2="8" y2="19" />
+              <line x1="16" y1="5" x2="16" y2="19" />
+            </svg>
           </ToolbarButton>
-        </div>
+        </ToolbarGroup>
 
         <Divider />
 
-        <div className="flex items-center gap-1">
+        <ToolbarGroup>
           <ToolbarButton
             onClick={() => editor.chain().focus().setHorizontalRule().run()}
             title="Horizontal Line"
           >
-            Divider
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <line x1="4" y1="12" x2="20" y2="12" />
+            </svg>
           </ToolbarButton>
-        </div>
+        </ToolbarGroup>
 
         <div className="flex-1" />
 
-        <div className="flex items-center gap-1">
+        <ToolbarGroup>
           <ToolbarButton
             onClick={() => setShowPreview(!showPreview)}
             isActive={showPreview}
             title={showPreview ? "Edit Mode" : "Preview Mode"}
           >
-            {showPreview ? 'Edit' : 'Preview'}
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M2 12s4-6 10-6 10 6 10 6-4 6-10 6S2 12 2 12z" />
+              <circle cx="12" cy="12" r="2.5" />
+            </svg>
           </ToolbarButton>
 
           <ToolbarButton
@@ -291,7 +348,12 @@ export default function EnhancedToolbar({
             isActive={isFocusMode}
             title={isFocusMode ? "Exit Focus Mode" : "Focus Mode"}
           >
-            {isFocusMode ? 'Exit' : 'Focus'}
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M8 3H3v5" />
+              <path d="M16 3h5v5" />
+              <path d="M8 21H3v-5" />
+              <path d="M21 16v5h-5" />
+            </svg>
           </ToolbarButton>
 
           {onClearDraft && (
@@ -299,19 +361,23 @@ export default function EnhancedToolbar({
               onClick={onClearDraft}
               title="Clear Draft"
             >
-              Clear
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M3 6h18" />
+                <path d="M8 6v-2h8v2" />
+                <path d="M6 6l1 14h10l1-14" />
+              </svg>
             </ToolbarButton>
           )}
-        </div>
+        </ToolbarGroup>
       </div>
 
-      <div className="bg-amber-50 border-t border-amber-100 px-4 py-2 text-xs text-amber-900 flex items-center gap-4">
-        <span className="font-medium">Tips:</span>
-        <span>Drag & drop images</span>
-        <span>•</span>
-        <span>Paste images from clipboard</span>
-        <span>•</span>
-        <span>Auto-saves as you write</span>
+      <div className="bg-gradient-to-r from-amber-50 via-white to-amber-50 border-t border-amber-100 px-4 py-2 text-xs text-amber-900 flex flex-wrap items-center gap-3">
+        <span className="font-semibold uppercase tracking-wide">Tips</span>
+        <span className="text-stone-500">Drag & drop images</span>
+        <span className="text-stone-300">•</span>
+        <span className="text-stone-500">Paste images from clipboard</span>
+        <span className="text-stone-300">•</span>
+        <span className="text-stone-500">Auto-saves as you write</span>
       </div>
     </div>
   )
