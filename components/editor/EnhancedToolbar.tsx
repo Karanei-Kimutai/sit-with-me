@@ -88,7 +88,8 @@ export default function EnhancedToolbar({
 
   return (
     <div className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-stone-200">
-      <div className="flex flex-wrap items-center gap-2 p-3">
+      <div className="relative">
+        <div className="toolbar-scroll flex flex-nowrap items-center gap-2 p-3 overflow-x-auto">
         
         <ToolbarGroup>
           <ToolbarButton
@@ -329,7 +330,7 @@ export default function EnhancedToolbar({
           </ToolbarButton>
         </ToolbarGroup>
 
-        <div className="flex-1" />
+        <div className="flex-1 min-w-[12px]" />
 
         <ToolbarGroup>
           <ToolbarButton
@@ -369,16 +370,20 @@ export default function EnhancedToolbar({
             </ToolbarButton>
           )}
         </ToolbarGroup>
+        </div>
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-6 bg-gradient-to-r from-white to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-6 bg-gradient-to-l from-white to-transparent" />
       </div>
 
-      <div className="bg-gradient-to-r from-amber-50 via-white to-amber-50 border-t border-amber-100 px-4 py-2 text-xs text-amber-900 flex flex-wrap items-center gap-3">
-        <span className="font-semibold uppercase tracking-wide">Tips</span>
-        <span className="text-stone-500">Drag & drop images</span>
-        <span className="text-stone-300">•</span>
-        <span className="text-stone-500">Paste images from clipboard</span>
-        <span className="text-stone-300">•</span>
-        <span className="text-stone-500">Auto-saves as you write</span>
-      </div>
+      <style jsx>{`
+        .toolbar-scroll {
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+        }
+        .toolbar-scroll::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
     </div>
   )
 }
