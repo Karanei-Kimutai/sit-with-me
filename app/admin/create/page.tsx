@@ -87,33 +87,6 @@ export default function CreatePostPage() {
 
           </div>
 
-          <div className="mt-6 p-6 bg-amber-50 border border-amber-200 rounded-xl">
-            <h3 className="text-sm font-bold text-amber-900 mb-3 flex items-center gap-2">
-              <span>Writing Tips for Powerful Stories</span>
-            </h3>
-            <ul className="text-sm text-amber-800 space-y-2">
-              <li className="flex items-start gap-2">
-                <span className="text-amber-600 mt-0.5">•</span>
-                <span><strong>Start with a moment:</strong> Begin with a specific interaction or observation that drew you in.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-amber-600 mt-0.5">•</span>
-                <span><strong>Use names:</strong> When appropriate, use first names to humanize the story.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-amber-600 mt-0.5">•</span>
-                <span><strong>Include dialogue:</strong> What they said can be more powerful than what you observed.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-amber-600 mt-0.5">•</span>
-                <span><strong>Show emotion:</strong> Don&apos;t be afraid to share how the encounter affected you.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-amber-600 mt-0.5">•</span>
-                <span><strong>End with impact:</strong> Leave readers with something to think about or act on.</span>
-              </li>
-            </ul>
-          </div>
         </div>
       </form>
 
