@@ -140,7 +140,7 @@ export default function UserDropdown({ userName, userEmail, isAdmin }: Props) {
             <div className="border-t border-stone-100 my-2"></div>
 
             <Link
-              href="/api/auth/signout"
+              href="/signout"
               className="flex items-center gap-3 px-4 py-3 text-red-600 hover:bg-red-50 transition-colors group"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
