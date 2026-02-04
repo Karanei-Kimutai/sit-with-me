@@ -1,3 +1,4 @@
+'use client';
 import { PrismaClient } from "@prisma/client";
 import Link from "next/link";
 
@@ -26,10 +27,10 @@ export default async function Home() {
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmYjkyM2MiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDE0YzMuMzEgMCA2IDIuNjkgNiA2cy0yLjY5IDYtNiA2LTYtMi42OS02LTYgMi42OS02IDYtNnpNNiAzNGMzLjMxIDAgNiAyLjY5IDYgNnMtMi42OSA2LTYgNi02LTIuNjktNi02IDIuNjktNiA2LTZ6TTM2IDM0YzMuMzEgMCA2IDIuNjkgNiA2cy0yLjY5IDYtNiA2LTYtMi42OS02LTYgMi42OS02IDYtNnoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-40"></div>
         
         <div className="relative max-w-6xl mx-auto px-6 py-24 md:py-32 flex flex-col items-center text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-amber-950 tracking-tight mb-6 font-serif">
-            Restoring Dignity.
+          <h1 className="text-5xl md:text-6xl font-extrabold text-amber-950 tracking-tight mb-6">
+            <span className="font-serif">Restoring Dignity.</span>
           </h1>
-          <p className="text-xl text-amber-900/70 max-w-2xl mb-10 leading-relaxed font-light">
+          <p className="text-xl text-stone-600 max-w-2xl mb-10 leading-relaxed">
             Sit With Me is a community dedicated to helping homeless people and street children 
             feel seen, valued, and cared for. We don&apos;t just give resources; we give our time.
           </p>
@@ -155,7 +156,7 @@ export default async function Home() {
                             </div>
 
                             {/* Title */}
-                            <h3 className="text-2xl md:text-3xl font-serif font-bold text-stone-900 mb-3 leading-tight group-hover:text-amber-900 transition-colors">
+                            <h3 className="text-2xl md:text-3xl font-bold text-stone-900 mb-3 leading-tight group-hover:text-amber-900 transition-colors font-serif">
                               {post.title}
                             </h3>
 
