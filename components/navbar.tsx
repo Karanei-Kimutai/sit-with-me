@@ -82,7 +82,7 @@ export default async function Navbar() {
             ) : (
               <>
                 <Link 
-                  href="/api/auth/signin" 
+                  href="/signin" 
                   className="hidden sm:block text-stone-700 hover:text-amber-900 font-medium transition-colors"
                 >
                   Sign In
