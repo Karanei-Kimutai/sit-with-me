@@ -156,8 +156,8 @@ export default async function SinglePostPage({ params }: Props) {
 
       {/* HERO IMAGE */}
       {post.imageUrl && (
-        <div className="max-w-6xl mx-auto px-6 py-8">
-          <div className="aspect-video w-full bg-stone-200 rounded-2xl overflow-hidden shadow-2xl shadow-stone-300/50 border border-stone-200">
+        <div className="max-w-4xl mx-auto px-6 py-6">
+          <div className="aspect-[16/9] w-full bg-stone-200 rounded-2xl overflow-hidden shadow-xl shadow-stone-300/40 border border-stone-200">
             <img 
               src={post.imageUrl} 
               alt={post.title} 
@@ -168,8 +168,8 @@ export default async function SinglePostPage({ params }: Props) {
       )}
 
       {/* STORY CONTENT */}
-      <article className="max-w-3xl mx-auto px-6 py-12">
-        <div className="bg-white/80 backdrop-blur-sm p-8 md:p-12 rounded-2xl border border-stone-200 shadow-sm">
+      <article className="max-w-4xl mx-auto px-6 py-12">
+        <div className="bg-white/80 backdrop-blur-sm p-8 md:p-14 rounded-2xl border border-stone-200 shadow-sm">
           
           {/* Rich Text Content */}
           <div 
