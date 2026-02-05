@@ -9,6 +9,8 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@floating-ui/dom": "^1.7.5",
+    "@floating-ui/react": "^0.27.17",
     "@tiptap/extension-image": "^3.18.0",
     "@tiptap/extension-link": "^3.18.0",
     "@tiptap/extension-placeholder": "^3.18.0",
