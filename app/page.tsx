@@ -41,11 +41,11 @@ export default async function Home() {
           
           <div className="relative max-w-6xl mx-auto px-6 py-24 md:py-32 flex flex-col items-center text-center">
             <h1 className="text-5xl md:text-6xl font-bold text-amber-950 tracking-tight mb-6 font-sans">
-              Restoring Dignity.
+              Building Connection.
             </h1>
             <p className="text-xl text-amber-900/70 max-w-2xl mb-10 leading-relaxed font-light">
-              Sit With Me is a community dedicated to helping homeless people and street children 
-              feel seen, valued, and cared for. We don&apos;t just give resources; we give our time.
+              Sit With Me is a community focused on respectful outreach and storytelling with people 
+              experiencing homelessness. We show up, listen, and learn together.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Link 
@@ -73,7 +73,7 @@ export default async function Home() {
               </div>
               <h3 className="text-xl font-bold text-stone-800 mb-2 font-sans">Be Seen</h3>
               <p className="text-stone-600 leading-relaxed">
-                We acknowledge every individual we meet, proving that they are not invisible to the world.
+                We introduce ourselves, listen carefully, and show up consistently.
               </p>
             </div>
             <div className="group">
@@ -82,7 +82,7 @@ export default async function Home() {
               </div>
               <h3 className="text-xl font-bold text-stone-800 mb-2 font-sans">Be Valued</h3>
               <p className="text-stone-600 leading-relaxed">
-                We share stories and time, affirming the inherent worth that exists in every human being.
+                We share time and stories with consent, centering each person&apos;s voice.
               </p>
             </div>
             <div className="group">
@@ -91,7 +91,7 @@ export default async function Home() {
               </div>
               <h3 className="text-xl font-bold text-stone-800 mb-2 font-sans">Be Cared For</h3>
               <p className="text-stone-600 leading-relaxed">
-                Beyond conversation, we mobilize our community to provide essential support and advocacy.
+                We connect people to resources and partners while staying present and reliable.
               </p>
             </div>
           </div>
@@ -104,10 +104,10 @@ export default async function Home() {
             {/* Section Header */}
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-stone-900 mb-3 font-sans">
-                Latest from the Streets
+                Latest Stories
               </h2>
               <p className="text-lg text-stone-600 max-w-2xl mx-auto leading-relaxed">
-                Read about our recent visits and the friends we&apos;ve made.
+                Read recent stories from outreach and community contributors.
               </p>
               <div className="mt-6 flex items-center justify-center gap-2 text-sm text-amber-800/60">
                 <div className="w-12 h-px bg-amber-300"></div>
@@ -210,7 +210,7 @@ export default async function Home() {
                   </svg>
                 </div>
                 <h3 className="text-xl font-sans text-stone-700 mb-2">No stories yet</h3>
-                <p className="text-stone-500">The first story is waiting to be written.</p>
+                <p className="text-stone-500">No stories yet. Check back soon or share one.</p>
               </div>
             )}
 

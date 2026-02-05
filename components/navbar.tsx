@@ -25,7 +25,7 @@ export default function Navbar() {
                 Sit With Me
               </span>
               <span className="text-[10px] text-amber-700 uppercase tracking-wider font-medium -mt-1">
-                Restoring Dignity
+                Community & Care
               </span>
             </div>
           </Link>

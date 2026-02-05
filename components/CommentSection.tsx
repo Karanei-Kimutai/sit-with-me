@@ -51,7 +51,7 @@ export default function CommentSection({ postId, comments, isGuest }: Props) {
         </h3>
         <p className="text-sm text-stone-600">
           {localComments.length === 0 
-            ? 'Be the first to share how this story touched you' 
+            ? 'Be the first to share a thoughtful response' 
             : `${localComments.length} ${localComments.length === 1 ? 'reflection' : 'reflections'} shared`}
         </p>
       </div>
@@ -63,7 +63,7 @@ export default function CommentSection({ postId, comments, isGuest }: Props) {
             <svg className="w-12 h-12 text-amber-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
             </svg>
-            <p className="text-stone-700 mb-4 font-medium">Join our community to share your thoughts</p>
+            <p className="text-stone-700 mb-4 font-medium">Join the community to share your thoughts</p>
             <a 
               href="/register" 
               className="inline-block btn-primary px-6 py-2 rounded-full font-medium transition-all shadow-sm"
@@ -83,7 +83,7 @@ export default function CommentSection({ postId, comments, isGuest }: Props) {
                 onChange={(e) => setCommentText(e.target.value)}
                 rows={4}
                 className="w-full px-4 py-3 border border-stone-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent resize-none text-stone-800 placeholder:text-stone-400"
-                placeholder="How did this story impact you? What emotions did it bring up?"
+                placeholder="What stood out to you? Add context, questions, or reflections."
                 disabled={isPending}
               />
             </div>

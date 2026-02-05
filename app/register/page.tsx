@@ -9,7 +9,7 @@ export default function RegisterPage() {
           Join the Community
         </h1>
         <p className="text-center text-stone-600 mb-8">
-          Create your account and start sharing stories.
+          Create your account to read, share, and comment.
         </p>
 
         {/* The form action points directly to our server function */}

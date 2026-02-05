@@ -44,7 +44,7 @@ export default function SignInPage() {
             Welcome Back
           </h1>
           <p className="text-stone-600 mt-2">
-            Sign in to continue your story.
+            Sign in to continue.
           </p>
         </div>
 

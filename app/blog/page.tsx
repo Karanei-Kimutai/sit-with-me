@@ -51,10 +51,10 @@ export default async function BlogPage() {
           
           <div className="relative max-w-4xl mx-auto px-6 py-16 md:py-24 text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-amber-950 mb-4 tracking-tight font-sans">
-              Stories from the Streets
+              Stories from the Community
             </h1>
             <p className="text-lg md:text-xl text-amber-900/70 max-w-2xl mx-auto leading-relaxed font-light">
-              Every encounter is a story. Every story is a step toward restoring dignity.
+              Thoughtful stories about outreach, community, and the people we meet.
             </p>
             
             <div className="mt-8 flex items-center justify-center gap-2 text-sm text-amber-800/60">
@@ -75,7 +75,7 @@ export default async function BlogPage() {
                 </svg>
               </div>
               <h3 className="text-2xl font-sans text-stone-700 mb-2">No stories yet</h3>
-              <p className="text-stone-500">The first story is waiting to be written.</p>
+              <p className="text-stone-500">No stories yet. Check back soon.</p>
             </div>
           ) : (
             Object.entries(groupedPosts).map(([monthYear, monthPosts]: [string, any], groupIndex) => (
@@ -204,11 +204,10 @@ export default async function BlogPage() {
               </svg>
             </div>
             <h2 className="text-3xl font-sans font-bold text-stone-900 mb-4">
-              Join our journey
+              Stay connected
             </h2>
             <p className="text-lg text-stone-600 mb-8 leading-relaxed">
-              Every story you read represents a life touched, a conversation shared, and dignity restored. 
-              Be part of this community.
+              Stories highlight people, places, and practical steps. Join the community to stay informed.
             </p>
             <Link 
               href="/register" 

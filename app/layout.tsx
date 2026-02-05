@@ -11,7 +11,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Sit With Me",
-  description: "Restoring dignity to people experiencing homelessness.",
+  description: "Community storytelling and respectful outreach.",
 };
 
 export default function RootLayout({
