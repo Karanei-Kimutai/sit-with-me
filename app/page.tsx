@@ -50,7 +50,7 @@ export default async function Home() {
             <div className="flex flex-wrap gap-4 justify-center">
               <Link 
                 href="/register" 
-                className="px-8 py-3 bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-full font-medium hover:from-amber-700 hover:to-orange-700 transition-all shadow-lg hover:shadow-xl hover:scale-105"
+                className="px-8 py-3 btn-primary rounded-full font-medium transition-all shadow-lg hover:shadow-xl hover:scale-105"
               >
                 Join the Community
               </Link>

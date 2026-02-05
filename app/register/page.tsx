@@ -50,7 +50,7 @@ export default function RegisterPage() {
 
           <button 
             type="submit" 
-            className="w-full py-3 rounded-full text-sm font-semibold text-white transition-all shadow-sm bg-amber-700 hover:bg-amber-800 hover:shadow-md"
+            className="w-full py-3 rounded-full text-sm font-semibold btn-primary transition-all shadow-sm hover:shadow-md"
           >
             Create Account
           </button>

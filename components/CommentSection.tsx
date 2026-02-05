@@ -66,7 +66,7 @@ export default function CommentSection({ postId, comments, isGuest }: Props) {
             <p className="text-stone-700 mb-4 font-medium">Join our community to share your thoughts</p>
             <a 
               href="/register" 
-              className="inline-block bg-gradient-to-r from-amber-600 to-orange-600 text-white px-6 py-2 rounded-full font-medium hover:from-amber-700 hover:to-orange-700 transition-all shadow-sm"
+              className="inline-block btn-primary px-6 py-2 rounded-full font-medium transition-all shadow-sm"
             >
               Become a Member
             </a>
@@ -94,7 +94,7 @@ export default function CommentSection({ postId, comments, isGuest }: Props) {
               <button
                 type="submit"
                 disabled={isPending || !commentText.trim()}
-                className="bg-gradient-to-r from-amber-600 to-orange-600 text-white px-6 py-2 rounded-full font-medium hover:from-amber-700 hover:to-orange-700 transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                className="btn-primary px-6 py-2 rounded-full font-medium transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isPending ? 'Posting...' : 'Post Reflection'}
               </button>

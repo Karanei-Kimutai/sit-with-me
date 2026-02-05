@@ -10,9 +10,9 @@
   --link-hover: #ff7043;
   --border: #ffe0b2;
   --card-bg: #fff3e0;
-  --button-bg: #ffb347;
+  --button-bg: #f2c38c;
   --button-text: #3b2f2f;
-  --button-hover: #ff7043;
+  --button-hover: #e8b779;
 }
 
 @theme inline {
@@ -58,7 +58,28 @@ button, .btn {
 }
 button:hover, .btn:hover {
   background: var(--button-hover);
-  color: #fff;
+  color: var(--button-text);
+}
+
+.btn-primary {
+  background: var(--button-bg);
+  color: var(--button-text);
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  background: var(--button-hover);
+  color: var(--button-text);
+}
+
+.btn-primary:disabled,
+.btn-primary[aria-disabled="true"] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+a.btn-primary {
+  color: var(--button-text);
 }
 
 .card {

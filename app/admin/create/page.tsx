@@ -64,8 +64,8 @@ export default function CreatePostPage() {
             <button 
               type="submit" 
               disabled={isUploadingCover}
-              className={`bg-green-700 text-white px-6 py-2 rounded-full text-sm font-medium transition-all shadow-sm flex items-center gap-2 ${
-                isUploadingCover ? 'opacity-60 cursor-not-allowed' : 'hover:bg-green-800 hover:shadow-md'
+              className={`btn-primary px-6 py-2 rounded-full text-sm font-medium transition-all shadow-sm flex items-center gap-2 ${
+                isUploadingCover ? 'opacity-60 cursor-not-allowed' : 'hover:shadow-md'
               }`}
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

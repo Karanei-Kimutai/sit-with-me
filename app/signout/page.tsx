@@ -25,10 +25,8 @@ export default function SignOutPage() {
         <button
           onClick={handleSignOut}
           disabled={isSigningOut}
-          className={`w-full py-3 rounded-full text-sm font-semibold text-white transition-all shadow-sm ${
-            isSigningOut
-              ? 'bg-stone-400 cursor-not-allowed'
-              : 'bg-stone-800 hover:bg-stone-900 hover:shadow-md'
+          className={`w-full py-3 rounded-full text-sm font-semibold btn-primary transition-all shadow-sm ${
+            isSigningOut ? 'opacity-60 cursor-not-allowed' : 'hover:shadow-md'
           }`}
         >
           {isSigningOut ? 'Signing Out...' : 'Sign Out'}

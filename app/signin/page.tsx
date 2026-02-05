@@ -80,10 +80,8 @@ export default function SignInPage() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className={`w-full py-3 rounded-full text-sm font-semibold text-white transition-all shadow-sm ${
-              isSubmitting
-                ? 'bg-amber-400 cursor-not-allowed'
-                : 'bg-amber-700 hover:bg-amber-800 hover:shadow-md'
+            className={`w-full py-3 rounded-full text-sm font-semibold btn-primary transition-all shadow-sm ${
+              isSubmitting ? 'opacity-60 cursor-not-allowed' : 'hover:shadow-md'
             }`}
           >
             {isSubmitting ? 'Signing In...' : 'Sign In'}

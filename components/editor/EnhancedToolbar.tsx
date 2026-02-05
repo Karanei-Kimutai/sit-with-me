@@ -21,7 +21,7 @@ function ToolbarButton({ onClick, isActive, disabled, title, children }: { onCli
       title={title}
       aria-label={title}
       aria-pressed={isActive}
-      className={`h-9 min-w-9 px-2.5 rounded-lg text-sm font-medium transition-all border flex items-center justify-center ${isActive ? 'bg-amber-800 text-white border-amber-800 shadow-sm' : 'text-stone-700 border-transparent hover:bg-white hover:border-stone-200 hover:shadow-sm disabled:opacity-30 disabled:cursor-not-allowed'}`}
+      className={`h-9 min-w-9 px-2.5 rounded-lg text-sm font-medium transition-all border flex items-center justify-center ${isActive ? 'bg-amber-200 text-amber-950 border-amber-300 shadow-sm' : 'text-stone-700 border-transparent hover:bg-white hover:border-stone-200 hover:shadow-sm disabled:opacity-30 disabled:cursor-not-allowed'}`}
     >
       {children}
     </button>
@@ -280,7 +280,7 @@ export default function EnhancedToolbar({
                   <button
                     type="button"
                     onClick={setLink}
-                    className="flex-1 bg-amber-700 text-white px-3 py-1.5 rounded-lg text-sm hover:bg-amber-800"
+                    className="flex-1 bg-amber-200 text-amber-950 px-3 py-1.5 rounded-lg text-sm hover:bg-amber-300"
                   >
                     Add Link
                   </button>

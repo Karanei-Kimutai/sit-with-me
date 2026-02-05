@@ -65,7 +65,7 @@ export default function Navbar() {
                 {(session?.user as any)?.role === 'ADMIN' && (
                   <Link 
                     href="/admin/create" 
-                    className="hidden sm:flex items-center gap-2 bg-gradient-to-r from-amber-600 to-orange-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:from-amber-700 hover:to-orange-700 transition-all shadow-sm hover:shadow-md"
+                    className="hidden sm:flex items-center gap-2 btn-primary px-4 py-2 rounded-full text-sm font-medium transition-all shadow-sm hover:shadow-md"
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -91,7 +91,7 @@ export default function Navbar() {
                 </Link>
                 <Link 
                   href="/register" 
-                  className="bg-gradient-to-r from-amber-600 to-orange-600 text-white px-5 py-2 rounded-full text-sm font-medium hover:from-amber-700 hover:to-orange-700 transition-all shadow-sm hover:shadow-md"
+                  className="btn-primary px-5 py-2 rounded-full text-sm font-medium transition-all shadow-sm hover:shadow-md"
                 >
                   Join Us
                 </Link>

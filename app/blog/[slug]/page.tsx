@@ -216,7 +216,7 @@ export default async function SinglePostPage({ params }: Props) {
           {!session ? (
             <Link 
               href="/register" 
-              className="inline-block bg-gradient-to-r from-amber-600 to-orange-600 text-white px-8 py-3 rounded-full font-medium hover:from-amber-700 hover:to-orange-700 transition-all shadow-lg hover:shadow-xl hover:scale-105"
+              className="inline-block btn-primary px-8 py-3 rounded-full font-medium transition-all shadow-lg hover:shadow-xl hover:scale-105"
             >
               Join our Community
             </Link>

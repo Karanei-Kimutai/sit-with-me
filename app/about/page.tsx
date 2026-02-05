@@ -103,7 +103,7 @@ export default function AboutPage() {
         </p>
         <Link 
           href="/register" 
-          className="bg-amber-800 text-white px-8 py-4 rounded-full font-medium hover:bg-amber-900 transition-all shadow-md hover:shadow-lg inline-block"
+          className="btn-primary px-8 py-4 rounded-full font-medium transition-all shadow-md hover:shadow-lg inline-block"
         >
           Join Sit With Me
         </Link>
