@@ -46,7 +46,7 @@ export default function CommentSection({ postId, comments, isGuest }: Props) {
       
       {/* Header */}
       <div className="bg-gradient-to-r from-amber-50 to-orange-50/50 px-6 md:px-8 py-6 border-b border-amber-200/50">
-        <h3 className="text-2xl font-bold text-stone-900 font-serif mb-2">
+        <h3 className="text-2xl font-bold text-stone-900 font-sans mb-2">
           Community Reflections
         </h3>
         <p className="text-sm text-stone-600">

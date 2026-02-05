@@ -4,7 +4,10 @@ import "./globals.css";
 import Navbar from "@/components/navbar";
 import Providers from "@/components/Providers";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-primary",
+});
 
 export const metadata: Metadata = {
   title: "Sit With Me",
@@ -18,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={inter.variable}>
         <Providers>
           <Navbar />
           {children}

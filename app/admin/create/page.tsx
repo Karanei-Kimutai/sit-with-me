@@ -100,7 +100,7 @@ export default function CreatePostPage() {
                     type="text" 
                     name="subtitle" 
                     placeholder="Add a subtitle to give context (optional)"
-                    className="w-full text-xl md:text-2xl text-stone-600 placeholder:text-stone-300 border-none focus:ring-0 px-0 mb-6 bg-transparent font-serif focus:outline-none"
+                    className="w-full text-xl md:text-2xl text-stone-600 placeholder:text-stone-300 border-none focus:ring-0 px-0 mb-6 bg-transparent font-sans focus:outline-none"
                     style={{ lineHeight: 1.3 }}
                   />
 

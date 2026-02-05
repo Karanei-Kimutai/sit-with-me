@@ -225,7 +225,7 @@ export default function TiptapEditor({
             <div className="p-8 md:p-12 max-w-4xl mx-auto">
               <div className="bg-white rounded-xl border border-stone-200 p-8 md:p-12">
                   <div
-                    className={`prose prose-stone prose-lg md:prose-xl max-w-none font-serif text-stone-700 leading-relaxed prose-headings:font-sans prose-headings:font-bold prose-headings:text-stone-900 prose-a:text-amber-700 prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl prose-img:shadow-md prose-img:my-8 prose-blockquote:border-l-4 prose-blockquote:border-amber-500 prose-blockquote:bg-amber-50 prose-blockquote:py-4 prose-blockquote:px-6`}
+                    className={`prose prose-stone prose-lg md:prose-xl max-w-none font-sans text-stone-700 leading-relaxed prose-headings:font-sans prose-headings:font-bold prose-headings:text-stone-900 prose-a:text-amber-700 prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl prose-img:shadow-md prose-img:my-8 prose-blockquote:border-l-4 prose-blockquote:border-amber-500 prose-blockquote:bg-amber-50 prose-blockquote:py-4 prose-blockquote:px-6`}
                     dangerouslySetInnerHTML={{ __html: editor?.getHTML() || '' }}
                   />
                 </div>

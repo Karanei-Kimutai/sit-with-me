@@ -21,7 +21,7 @@ export default function Navbar() {
               </svg>
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-bold text-amber-950 tracking-tight font-serif group-hover:text-amber-900 transition-colors">
+              <span className="text-xl font-bold text-amber-950 tracking-tight font-sans group-hover:text-amber-900 transition-colors">
                 Sit With Me
               </span>
               <span className="text-[10px] text-amber-700 uppercase tracking-wider font-medium -mt-1">

@@ -5,7 +5,7 @@ export default function RegisterPage() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-stone-50 via-white to-stone-100 flex items-center justify-center px-6 py-12">
       <div className="w-full max-w-md bg-white/90 backdrop-blur-sm border border-stone-200 rounded-2xl shadow-xl p-8 md:p-10">
-        <h1 className="text-3xl md:text-4xl font-extrabold text-stone-900 mb-2 text-center font-serif">
+        <h1 className="text-3xl md:text-4xl font-extrabold text-stone-900 mb-2 text-center font-sans">
           Join the Community
         </h1>
         <p className="text-center text-stone-600 mb-8">
