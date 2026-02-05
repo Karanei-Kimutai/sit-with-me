@@ -1,10 +1,12 @@
+"use client";
+
 import Link from 'next/link';
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/authOptions";
+import { useSession } from "next-auth/react";
 import UserDropdown from './UserDropdown';
 
-export default async function Navbar() {
-  const session = await getServerSession(authOptions);
+export default function Navbar() {
+  const { data: session, status } = useSession();
+  const isAuthed = status === 'authenticated';
 
   return (
     <nav className="bg-gradient-to-r from-amber-50 via-orange-50/50 to-amber-50 border-b border-amber-200/50 sticky top-0 z-40 backdrop-blur-sm bg-opacity-95 shadow-sm">
@@ -57,10 +59,10 @@ export default async function Navbar() {
 
           {/* Right Section - Auth */}
           <div className="flex items-center gap-4">
-            {session ? (
+            {isAuthed ? (
               <>
                 {/* Admin Write Button */}
-                {(session.user as any).role === 'ADMIN' && (
+                {(session?.user as any)?.role === 'ADMIN' && (
                   <Link 
                     href="/admin/create" 
                     className="hidden sm:flex items-center gap-2 bg-gradient-to-r from-amber-600 to-orange-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:from-amber-700 hover:to-orange-700 transition-all shadow-sm hover:shadow-md"
@@ -74,9 +76,9 @@ export default async function Navbar() {
 
                 {/* User Dropdown */}
                 <UserDropdown 
-                  userName={session.user?.name || 'Member'} 
-                  userEmail={session.user?.email || ''}
-                  isAdmin={(session.user as any).role === 'ADMIN'}
+                  userName={session?.user?.name || 'Member'} 
+                  userEmail={session?.user?.email || ''}
+                  isAdmin={(session?.user as any)?.role === 'ADMIN'}
                 />
               </>
             ) : (
