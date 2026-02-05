@@ -46,12 +46,12 @@ export default function CommentSection({ postId, comments, isGuest }: Props) {
       
       {/* Header */}
       <div className="bg-gradient-to-r from-amber-50 to-orange-50/50 px-6 md:px-8 py-6 border-b border-amber-200/50">
-        <h3 className="text-2xl font-bold text-stone-900 font-serif mb-2">
+        <h3 className="text-2xl font-bold text-stone-900 font-sans mb-2">
           Community Reflections
         </h3>
         <p className="text-sm text-stone-600">
           {localComments.length === 0 
-            ? 'Be the first to share how this story touched you' 
+            ? 'Be the first to share a thoughtful response' 
             : `${localComments.length} ${localComments.length === 1 ? 'reflection' : 'reflections'} shared`}
         </p>
       </div>
@@ -63,10 +63,10 @@ export default function CommentSection({ postId, comments, isGuest }: Props) {
             <svg className="w-12 h-12 text-amber-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
             </svg>
-            <p className="text-stone-700 mb-4 font-medium">Join our community to share your thoughts</p>
+            <p className="text-stone-700 mb-4 font-medium">Join the community to share your thoughts</p>
             <a 
               href="/register" 
-              className="inline-block bg-gradient-to-r from-amber-600 to-orange-600 text-white px-6 py-2 rounded-full font-medium hover:from-amber-700 hover:to-orange-700 transition-all shadow-sm"
+              className="inline-block btn-primary px-6 py-2 rounded-full font-medium transition-all shadow-sm"
             >
               Become a Member
             </a>
@@ -83,7 +83,7 @@ export default function CommentSection({ postId, comments, isGuest }: Props) {
                 onChange={(e) => setCommentText(e.target.value)}
                 rows={4}
                 className="w-full px-4 py-3 border border-stone-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent resize-none text-stone-800 placeholder:text-stone-400"
-                placeholder="How did this story impact you? What emotions did it bring up?"
+                placeholder="What stood out to you? Add context, questions, or reflections."
                 disabled={isPending}
               />
             </div>
@@ -94,7 +94,7 @@ export default function CommentSection({ postId, comments, isGuest }: Props) {
               <button
                 type="submit"
                 disabled={isPending || !commentText.trim()}
-                className="bg-gradient-to-r from-amber-600 to-orange-600 text-white px-6 py-2 rounded-full font-medium hover:from-amber-700 hover:to-orange-700 transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                className="btn-primary px-6 py-2 rounded-full font-medium transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isPending ? 'Posting...' : 'Post Reflection'}
               </button>

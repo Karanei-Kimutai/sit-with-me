@@ -1,10 +1,12 @@
+"use client";
+
 import Link from 'next/link';
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/authOptions";
+import { useSession } from "next-auth/react";
 import UserDropdown from './UserDropdown';
 
-export default async function Navbar() {
-  const session = await getServerSession(authOptions);
+export default function Navbar() {
+  const { data: session, status } = useSession();
+  const isAuthed = status === 'authenticated';
 
   return (
     <nav className="bg-gradient-to-r from-amber-50 via-orange-50/50 to-amber-50 border-b border-amber-200/50 sticky top-0 z-40 backdrop-blur-sm bg-opacity-95 shadow-sm">
@@ -19,11 +21,11 @@ export default async function Navbar() {
               </svg>
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-bold text-amber-950 tracking-tight font-serif group-hover:text-amber-900 transition-colors">
+              <span className="text-xl font-bold text-amber-950 tracking-tight font-sans group-hover:text-amber-900 transition-colors">
                 Sit With Me
               </span>
               <span className="text-[10px] text-amber-700 uppercase tracking-wider font-medium -mt-1">
-                Restoring Dignity
+                Community & Care
               </span>
             </div>
           </Link>
@@ -57,13 +59,13 @@ export default async function Navbar() {
 
           {/* Right Section - Auth */}
           <div className="flex items-center gap-4">
-            {session ? (
+            {isAuthed ? (
               <>
                 {/* Admin Write Button */}
-                {(session.user as any).role === 'ADMIN' && (
+                {(session?.user as any)?.role === 'ADMIN' && (
                   <Link 
                     href="/admin/create" 
-                    className="hidden sm:flex items-center gap-2 bg-gradient-to-r from-amber-600 to-orange-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:from-amber-700 hover:to-orange-700 transition-all shadow-sm hover:shadow-md"
+                    className="hidden sm:flex items-center gap-2 btn-primary px-4 py-2 rounded-full text-sm font-medium transition-all shadow-sm hover:shadow-md"
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -74,9 +76,9 @@ export default async function Navbar() {
 
                 {/* User Dropdown */}
                 <UserDropdown 
-                  userName={session.user?.name || 'Member'} 
-                  userEmail={session.user?.email || ''}
-                  isAdmin={(session.user as any).role === 'ADMIN'}
+                  userName={session?.user?.name || 'Member'} 
+                  userEmail={session?.user?.email || ''}
+                  isAdmin={(session?.user as any)?.role === 'ADMIN'}
                 />
               </>
             ) : (
@@ -89,7 +91,7 @@ export default async function Navbar() {
                 </Link>
                 <Link 
                   href="/register" 
-                  className="bg-gradient-to-r from-amber-600 to-orange-600 text-white px-5 py-2 rounded-full text-sm font-medium hover:from-amber-700 hover:to-orange-700 transition-all shadow-sm hover:shadow-md"
+                  className="btn-primary px-5 py-2 rounded-full text-sm font-medium transition-all shadow-sm hover:shadow-md"
                 >
                   Join Us
                 </Link>

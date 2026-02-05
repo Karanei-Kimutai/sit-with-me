@@ -117,13 +117,13 @@ export default async function SinglePostPage({ params }: Props) {
           </div>
 
           {/* Title */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-stone-900 leading-tight mb-6 font-serif">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-stone-900 leading-tight mb-6 font-sans">
             {post.title}
           </h1>
 
           {/* Subtitle */}
           {post.subtitle && (
-            <p className="text-xl md:text-2xl text-amber-800/80 font-serif italic mb-8 leading-relaxed">
+            <p className="text-xl md:text-2xl text-amber-800/80 font-sans italic mb-8 leading-relaxed">
               {post.subtitle}
             </p>
           )}
@@ -175,7 +175,7 @@ export default async function SinglePostPage({ params }: Props) {
           <div 
             className="prose prose-stone prose-lg md:prose-xl max-w-none 
             text-stone-700 leading-relaxed
-            prose-headings:font-serif prose-headings:font-bold prose-headings:text-stone-900 prose-headings:mt-12 prose-headings:mb-6
+            prose-headings:font-sans prose-headings:font-bold prose-headings:text-stone-900 prose-headings:mt-12 prose-headings:mb-6
             prose-p:mb-6 prose-p:leading-relaxed
             prose-a:text-amber-700 prose-a:no-underline prose-a:border-b prose-a:border-amber-300 hover:prose-a:border-amber-700 prose-a:transition-colors
             prose-img:rounded-xl prose-img:shadow-lg prose-img:my-10 prose-img:border prose-img:border-stone-200
@@ -189,7 +189,7 @@ export default async function SinglePostPage({ params }: Props) {
           {/* Story Footer */}
           <div className="mt-12 pt-8 border-t border-stone-200">
             <div className="flex items-center justify-between text-sm text-stone-500">
-              <span>Written with care by {post.author.name}</span>
+              <span>Written by {post.author.name}</span>
               <div className="flex items-center gap-2">
                 <svg className="w-4 h-4 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
@@ -209,20 +209,20 @@ export default async function SinglePostPage({ params }: Props) {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
             </svg>
           </div>
-          <h4 className="text-2xl font-bold text-amber-950 mb-3 font-serif">Did this story move you?</h4>
+          <h4 className="text-2xl font-bold text-amber-950 mb-3 font-sans">Want to stay connected?</h4>
           <p className="text-amber-900/80 mb-6 leading-relaxed max-w-lg mx-auto">
-            Join &quot;Sit With Me&quot; to help us restore dignity to street children through more outreach like this.
+            Join &quot;Sit With Me&quot; to support respectful outreach and share stories like this.
           </p>
           {!session ? (
             <Link 
               href="/register" 
-              className="inline-block bg-gradient-to-r from-amber-600 to-orange-600 text-white px-8 py-3 rounded-full font-medium hover:from-amber-700 hover:to-orange-700 transition-all shadow-lg hover:shadow-xl hover:scale-105"
+              className="inline-block btn-primary px-8 py-3 rounded-full font-medium transition-all shadow-lg hover:shadow-xl hover:scale-105"
             >
               Join our Community
             </Link>
           ) : (
             <p className="text-sm text-amber-800 font-medium">
-              Thank you for being part of our community! 🤝
+              Thanks for being part of the community.
             </p>
           )}
         </div>
@@ -257,7 +257,7 @@ export default async function SinglePostPage({ params }: Props) {
                   </div>
                 )}
                 <div className={`${nextPost.imageUrl ? 'sm:w-3/5' : 'w-full'} p-6 md:p-8 flex flex-col justify-center`}>
-                  <h3 className="text-2xl font-serif font-bold text-stone-900 mb-2 group-hover:text-amber-900 transition-colors">
+                  <h3 className="text-2xl font-sans font-bold text-stone-900 mb-2 group-hover:text-amber-900 transition-colors">
                     {nextPost.title}
                   </h3>
                   <span className="text-sm font-medium text-amber-700 group-hover:text-amber-900 flex items-center gap-2 group-hover:gap-3 transition-all">

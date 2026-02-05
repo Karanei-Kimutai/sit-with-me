@@ -10,15 +10,15 @@
   --link-hover: #ff7043;
   --border: #ffe0b2;
   --card-bg: #fff3e0;
-  --button-bg: #ffb347;
+  --button-bg: #f2c38c;
   --button-text: #3b2f2f;
-  --button-hover: #ff7043;
+  --button-hover: #e8b779;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-primary);
   --font-mono: var(--font-geist-mono);
 }
 
@@ -32,7 +32,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-primary), Arial, Helvetica, sans-serif;
   min-height: 100vh;
   transition: background 0.3s, color 0.3s;
 }
@@ -58,7 +58,28 @@ button, .btn {
 }
 button:hover, .btn:hover {
   background: var(--button-hover);
-  color: #fff;
+  color: var(--button-text);
+}
+
+.btn-primary {
+  background: var(--button-bg);
+  color: var(--button-text);
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  background: var(--button-hover);
+  color: var(--button-text);
+}
+
+.btn-primary:disabled,
+.btn-primary[aria-disabled="true"] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+a.btn-primary {
+  color: var(--button-text);
 }
 
 .card {
@@ -87,4 +108,3 @@ hr {
 .warm-border {
   border-color: var(--border);
 }
-

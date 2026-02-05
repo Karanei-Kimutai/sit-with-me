@@ -2,12 +2,16 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
+import Providers from "@/components/Providers";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-primary",
+});
 
 export const metadata: Metadata = {
   title: "Sit With Me",
-  description: "Restoring dignity to people experiencing homelessness.",
+  description: "Community storytelling and respectful outreach.",
 };
 
 export default function RootLayout({
@@ -17,9 +21,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Navbar />
-        {children}
+      <body className={inter.variable}>
+        <Providers>
+          <Navbar />
+          {children}
+        </Providers>
       </body>
     </html>
   );

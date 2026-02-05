@@ -12,8 +12,8 @@ export default function AboutPage() {
             <span className="text-amber-800/60">Connection.</span>
           </h1>
           <p className="text-xl text-stone-600 leading-relaxed max-w-2xl mx-auto">
-            Sit With Me is a community dedicated to restoring dignity to people experiencing homelessness, 
-            proving that no one is invisible.
+            Sit With Me is a community centered on respectful outreach and shared storytelling with people 
+            experiencing homelessness.
           </p>
         </div>
       </section>
@@ -25,27 +25,24 @@ export default function AboutPage() {
           
           <p className="text-lg text-stone-700 mb-6 leading-relaxed">
             It began with a simple observation: while food and clothing drives are essential, 
-            they often overlook the human need for connection. A sandwich feeds the body, 
-            but a conversation feeds the soul.
+            they can miss the need for genuine connection. A meal matters, and so does being heard.
           </p>
           
           <p className="text-lg text-stone-700 mb-8 leading-relaxed">
-            Our founder realized that many street children and homeless individuals feel 
-            fundamentally <strong className="font-bold text-stone-900">unseen</strong>. They are walked past, ignored, or treated 
-            as statistics to be managed rather than people to be known.
+            Our founder realized that many people experiencing homelessness are often treated 
+            as a problem to solve rather than people to know.
           </p>
           
           <blockquote className="border-l-4 border-amber-500 pl-6 py-4 my-10 bg-white shadow-sm rounded-r-lg">
             <p className="text-xl italic text-stone-800 font-medium leading-relaxed">
               "We wanted to build a community where the goal isn't just to give something and leave, 
-              but to stay. To sit. To listen. To let them know they are valued."
+              but to stay. To sit. To listen. To treat people with respect."
             </p>
           </blockquote>
           
           <p className="text-lg text-stone-700 leading-relaxed">
             That is where the name <strong className="font-bold text-stone-900">"Sit With Me"</strong> comes from. It is an invitation 
-            to pause our busy lives and share a moment of genuine humanity with someone who 
-            is often denied it.
+            to pause our busy lives and share a moment of genuine presence.
           </p>
         </div>
       </section>
@@ -65,7 +62,7 @@ export default function AboutPage() {
               </div>
               <h3 className="text-xl font-bold text-stone-800 mb-3">Recognition</h3>
               <p className="text-stone-600 leading-relaxed">
-                We learn names. We remember stories. We treat every interaction as a meeting between equals, dismantling the barrier between "helper" and "helped."
+                We learn names, listen carefully, and treat every interaction as a meeting between equals.
               </p>
             </div>
 
@@ -76,7 +73,7 @@ export default function AboutPage() {
               </div>
               <h3 className="text-xl font-bold text-stone-800 mb-3">Consistency</h3>
               <p className="text-stone-600 leading-relaxed">
-                Trust takes time. We commit to regular visits so that our friends on the street know they have a reliable community they can count on.
+                Trust takes time. We show up regularly and follow through on commitments.
               </p>
             </div>
 
@@ -87,7 +84,7 @@ export default function AboutPage() {
               </div>
               <h3 className="text-xl font-bold text-stone-800 mb-3">Advocacy</h3>
               <p className="text-stone-600 leading-relaxed">
-                By sharing these stories on our platform, we change the public narrative around homelessness, moving from stigma to empathy.
+                By sharing stories with care, we build understanding and reduce stigma.
               </p>
             </div>
           </div>
@@ -96,14 +93,14 @@ export default function AboutPage() {
 
       {/* 4. CALL TO ACTION */}
       <section className="py-24 text-center px-6">
-        <h2 className="text-3xl font-bold text-stone-900 mb-6">Be part of the change</h2>
+        <h2 className="text-3xl font-bold text-stone-900 mb-6">Be part of the work</h2>
         <p className="text-lg text-stone-600 max-w-2xl mx-auto mb-10">
-          We are always looking for more hearts and hands. Whether you can join us physically 
-          or support us digitally, there is a seat for you here.
+          We welcome more time, skills, and steady presence. Whether you can join in person 
+          or support online, there is a seat for you here.
         </p>
         <Link 
           href="/register" 
-          className="bg-amber-800 text-white px-8 py-4 rounded-full font-medium hover:bg-amber-900 transition-all shadow-md hover:shadow-lg inline-block"
+          className="btn-primary px-8 py-4 rounded-full font-medium transition-all shadow-md hover:shadow-lg inline-block"
         >
           Join Sit With Me
         </Link>
