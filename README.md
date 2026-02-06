@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sit With Me
+
+A community storytelling and outreach blog built with Next.js App Router, Prisma, and NextAuth. It supports role-based access for publishing posts, rich-text editing, and optional Cloudinary image uploads.
+
+## Features
+- Public blog with published posts and post detail pages
+- Admin-only story creation with rich-text editor
+- Credentials-based authentication with role-aware sessions
+- Cloudinary cover image uploads
+- PostgreSQL-backed content storage via Prisma
+
+## Tech Stack
+- Next.js (App Router)
+- React
+- Prisma ORM + PostgreSQL
+- NextAuth (Credentials provider)
+- Tiptap editor
+- Tailwind CSS
 
 ## Getting Started
 
-First, run the development server:
-
+### 1) Install dependencies
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2) Configure environment variables
+Create a `.env` file using the example:
+```bash
+cp .env.example .env
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Fill in values for:
+- `DATABASE_URL`
+- `NEXTAUTH_URL`
+- `NEXTAUTH_SECRET`
+- `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME`
+- `NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 3) Prepare the database
+Run migrations for your database:
+```bash
+npx prisma migrate dev
+```
 
-## Learn More
+### 4) Seed sample data (optional)
+The real seed script is confidential. Use the example seed script instead or create your own:
+```bash
+npx ts-node --compiler-options "{\"module\":\"CommonJS\"}" prisma/exampleseed.ts
+```
 
-To learn more about Next.js, take a look at the following resources:
+### 5) Start the dev server
+```bash
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Open `http://localhost:3000`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Environment Variables
+These are required for local development and production:
+- `DATABASE_URL`: PostgreSQL connection string
+- `NEXTAUTH_URL`: Base URL for NextAuth (e.g. `http://localhost:3000`)
+- `NEXTAUTH_SECRET`: Secret used to sign NextAuth tokens
+- `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME`: Cloudinary account name
+- `NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET`: Unsigned upload preset for client-side uploads
 
-## Deploy on Vercel
+## Authentication and Roles
+- Auth uses NextAuth Credentials provider.
+- Admin-only publishing is enforced in the `createPost` server action.
+- The seed script creates an admin user for local testing.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Example Seed Account (Local)
+The example seed script (`prisma/exampleseed.ts`) creates:
+- Email: `admin@sitwithme.org`
+- Password: `password123`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Change these in your own seed script or create your own admin user for any real environment.
+
+## Scripts
+- `npm run dev`: Run the local dev server
+- `npm run build`: Run Prisma migrations and build the app
+- `npm run start`: Start the production server
+- `npm run lint`: Lint the codebase
+
+## Deployment Notes
+- Ensure the database is reachable from the deployment environment.
+- Run `prisma migrate deploy` during deploys (already included in `npm run build`).
+- Set all environment variables in your hosting provider.
+
+## Troubleshooting
+- If auth fails, verify `NEXTAUTH_URL` matches the actual site URL.
+- If Cloudinary uploads fail, ensure the upload preset is unsigned and the name matches `NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET`.
+- If Prisma errors occur, run `npx prisma generate` after dependency installs (also runs on `postinstall`).
